@@ -28,17 +28,10 @@ FLAGS = flags.FLAGS
 
 # TO-DO replace this with label map
 def class_text_to_int(row_label):
-    if row_label == 'Car':
+    if row_label == 'people':
         return 1
-    elif row_label == 'Bus':
+    elif row_label == 'people-like':
         return 2
-    elif row_label == 'Motorcycle':
-        return 3
-    elif row_label == 'Truck':
-        return 4
-    elif row_label == 'Ambulance':
-        return 5
-      # and so on
     else:
         return None
 

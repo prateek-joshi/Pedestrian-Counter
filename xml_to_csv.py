@@ -6,7 +6,7 @@ import xml.etree.ElementTree as ET
 
 def xml_to_csv(path):
     xml_list = []
-    for xml_file in glob.glob(path + '/Annotations/*.xml'):
+    for xml_file in glob.glob(path + '/*.xml'):
         tree = ET.parse(xml_file)
         root = tree.getroot()
         for member in root.findall('object'):
@@ -26,15 +26,11 @@ def xml_to_csv(path):
 
 
 def main():
-    for directory in ['Train','Test']:
-        image_path = f'Tensorflow/workspace/images/{directory}/{directory}'
+    for directory in ['train','test']:
+        image_path = f'Tensorflow/workspace/images/{directory}/'
         xml_df = xml_to_csv(image_path)
-        if directory=='Train':
-          xml_df.to_csv(f'Tensorflow/workspace/annotations/train_labels.csv', index=None)
-          print(f'Successfully converted xml to csv - train_labels.csv')
-        else:
-          xml_df.to_csv(f'Tensorflow/workspace/annotations/test_labels.csv', index=None)
-          print(f'Successfully converted xml to csv - test_labels.csv')
+        xml_df.to_csv(f'Tensorflow/workspace/annotations/{directory}_labels.csv', index=None)
+        print(f'Successfully converted xml to csv - {directory}_labels.csv')
 
 
 main()
